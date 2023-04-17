@@ -15,10 +15,11 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
       try {
         User user = User(
-          firstName: event.email,
-          lastName: "",
+          firstName: event.firstName,
+          lastName: event.lastName,
           email: event.email,
-          phoneNumber: PhoneNumber(countryCode: "+974", number: "12345678"),
+          phoneNumber: PhoneNumber(
+              countryCode: "+974", number: event.phoneNumber.toString()),
         );
 
         ApiResponse response = await apiClient.signUp(user);
